@@ -27,3 +27,32 @@ body{
  margin-bottom: 5%;
  border-radius:5px; 
 }
+
+
+
+/* For mobile phones: */
+body {
+  width: 100%;
+}
+
+@media only screen and (min-width: 600px) {
+  /* For tablets: */
+  body{
+    width:98%;
+  }
+}
+
+@media only screen and (min-width: 768px) {
+  /* For desktop: */
+  body{
+    width:75%;
+    margin:auto;
+    overflow-y: auto;
+    scroll-behavior: smooth;
+  }
+
+  nav
+  {
+    background:rgba(255, 255,255,0.5);
+  }
+}
