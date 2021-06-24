@@ -40,4 +40,8 @@ function fetchAllFNBItemsFromSF() {
                          }
                     );
     
+<<<<<<< HEAD
 }
+=======
+}
+>>>>>>> 6e8f947109da89a862da0c2b952c3ca3e28a74ed
