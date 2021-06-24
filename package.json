@@ -1,0 +1,21 @@
+{
+  "name": "fnb",
+  "version": "1.0.0",
+  "description": "food ordering app with salesforce as backend",
+  "main": "index.js",
+  "dependencies": {
+    "body-parser": "^1.19.0",
+    "express": "^4.17.1",
+    "hbs": "^4.1.2",
+    "localStorage": "^1.0.4",
+    "node-salesforce": "^0.8.0",
+    "path": "^0.12.7",
+    "request": "^2.88.2"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "kkalakbandi",
+  "license": "ISC"
+}
