@@ -61,6 +61,10 @@ app.get('/', (req, res) => {
 res.render('home');
 });
 
+app.get('/AllItems', (req, res) => {
+    res.render('ItemList');
+    });
+    
 
 
 app.set('view engine', 'hbs');
