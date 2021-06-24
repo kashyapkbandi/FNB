@@ -40,6 +40,6 @@ function fetchAllFNBItemsFromSF() {
                          }
                     );
     
- }
+ 
  }
  
