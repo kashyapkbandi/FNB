@@ -1,6 +1,7 @@
 body{
 
-    background-image: url("/images/Herocover.jpg");
+    /* background-image: url("/images/Herocover.jpg"); */
+    background-color: white;
     background-repeat: no-repeat;
     background-position: center center fixed;
     -webkit-background-size: cover;
