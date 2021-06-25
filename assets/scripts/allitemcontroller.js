@@ -45,14 +45,9 @@ window.addEventListener('load', (event) => {
                         res=>{
                             //  console.log(res.records);
                              allitemListRecords = res.records;
-                             
-                                var holder =document.getElementById("listcardscontainer-internal");
-
-                                allitemListRecords.forEach(element => {
-                                             //  generate cards
-                                holder.appendChild(createCard(element));
-   
-                                });
+                            //  render items by passing this list.
+                            // a separate method is created called renderItems so that I can change the contents when needed
+                             renderItems(allitemListRecords);
                 
                              }
                         );
@@ -112,4 +107,15 @@ window.addEventListener('load', (event) => {
         console.log(col_div);
         return col_div;
 
+     }
+
+     function renderItems(records) {
+         
+        var holder =document.getElementById("listcardscontainer-internal");
+
+        records.forEach(element => {
+                     //  generate cards
+        holder.appendChild(createCard(element));
+
+        });
      }
