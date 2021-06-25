@@ -1,3 +1,4 @@
+
 var allitemListRecords=[];
 
 window.addEventListener('load', (event) => {
@@ -44,31 +45,15 @@ window.addEventListener('load', (event) => {
                         res=>{
                             //  console.log(res.records);
                              allitemListRecords = res.records;
+                             
                                 var holder =document.getElementById("listcardscontainer-internal");
-                            //  generate cards
-                                allitemListRecords.forEach(element => {
-                                    var newNode = document.createElement('div');
-                                    var nodeval=`<div class="col">
-                                    <div class="card shadow-sm">
-                                    <svg class="bd-placeholder-img card-img-top" width="100%" height="225" xmlns="http://www.w3.org/2000/svg" role="img" aria-label="Placeholder: Thumbnail" preserveAspectRatio="xMidYMid slice" focusable="false"><title>Placeholder</title><rect width="100%" height="100%" fill="#55595c"/><text x="50%" y="50%" fill="#eceeef" dy=".3em">Thumbnail</text></svg>
-                            
-                                    <div class="card-body">
-                                        <p class="card-text"></p>
-                                        <div class="d-flex justify-content-between align-items-center">
-                                        <div class="btn-group">
-                                            <button type="button" class="btn btn-sm btn-outline-secondary">View</button>
-                                            <button type="button" class="btn btn-sm btn-outline-secondary">Edit</button>
-                                        </div>
-                                        <small class="text-muted">9 mins</small>
-                                        </div>
-                                    </div>
-                                    </div>
-                                </div>`
-                                newNode.appendChild(nodeval);
-                                holder.appendChild(newNode);
-                                    
-                                });
 
+                                allitemListRecords.forEach(element => {
+                                             //  generate cards
+                                holder.appendChild(createCard(element));
+   
+                                });
+                
                              }
                         );
     
@@ -81,3 +66,50 @@ window.addEventListener('load', (event) => {
         //  then we sort the result again for Veg / NV options
         console.log(allitemListRecords);
      })
+
+
+
+     function createCard(element) {
+        var col_div = document.createElement("div");
+        col_div.classList.add('col');
+        var card_shadow_sm_div = document.createElement("div");
+        card_shadow_sm_div.classList.add('card','shadow-sm');
+
+        var card_body_div = document.createElement("div");
+        card_body_div.className='card-body';
+
+        var para = document.createElement("p");
+        para.className="card-text";
+        para.innerText=element.Title__c;
+        // <p class="card-text"></p>
+        card_body_div.appendChild(para);
+
+        var dflex_div = document.createElement("div");
+        dflex_div.classList.add('d-flex','justify-content-between','align-items-center');
+
+        var btngrp_div = document.createElement("div");
+        btngrp_div.className='btn-group';
+
+        var btn1 = document.createElement("button");
+        btn1.classList.add('btn', 'btn-sm', 'btn-outline-secondary');
+        btn1.setAttribute("type","button");
+        btn1.innerText="Add";
+
+        var btn2 = document.createElement("button");
+        btn2.classList.add('btn', 'btn-sm', 'btn-outline-secondary');
+        btn2.setAttribute("type","button");
+        btn2.innerText="remove";
+
+        btngrp_div.appendChild(btn1);
+        btngrp_div.appendChild(btn2);
+        
+
+        dflex_div.appendChild(btngrp_div);
+        card_body_div.appendChild(dflex_div);
+        card_shadow_sm_div.appendChild(card_body_div);
+        col_div.appendChild(card_shadow_sm_div);
+
+        console.log(col_div);
+        return col_div;
+
+     }

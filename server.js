@@ -48,11 +48,6 @@ app.get('/getSFAccessToken', (req, res) => {
         instanceURL : conn.instanceURL});
     });
 
-
-        
-
-
-
 });
 
 
