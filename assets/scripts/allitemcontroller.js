@@ -133,6 +133,20 @@ function createCard(element) {
     dflex_div.classList.add('d-flex', 'justify-content-between', 'align-items-center');
     //                 <small class="text-muted">9 mins</small>
 
+
+    var imgicn=document.createElement("img");
+    // check if veg and assign the right alt and imagesrc
+
+    if(element.Type__c == "Vegetarian")
+    {
+        imgicn.setAttribute("src",'/images/veg.png');
+        imgicn.setAttribute("alt","Vegetarian");
+    }else{
+        imgicn.setAttribute("src",'/images/nonveg.png');
+        imgicn.setAttribute("alt","Non-Vegetarian");
+    }
+  
+
     var smalltag1 = document.createElement("small");
     smalltag1.className = "text-muted";
     smalltag1.innerText = "Count - ";
@@ -141,7 +155,8 @@ function createCard(element) {
     smalltag2.className = "text-muted";
     smalltag2.setAttribute('id', 'PRICE_' + element.Id);
     smalltag2.innerText = "Price - " + element.Price__c;
-    dflex_div.appendChild(smalltag1);
+    dflex_div.appendChild(imgicn);
+    // dflex_div.appendChild(smalltag1);
     dflex_div.appendChild(smalltag2);
 
     var btngrp_div = document.createElement("div");
@@ -235,6 +250,22 @@ document.addEventListener('click', (event) => {
 
             }
         }
+        // if thats a Search button
+        else if(event.target.id == "FilterFoodBySearch"){
+            // get the value entered in item search box and populate a list to render inplace of what ever is present.
+            var searchList = [];
+            allitemListRecords.forEach(element=>{
+                if (element.Title__c.toUpperCase().includes(document.getElementById("itemsearchbox").value.toUpperCase())) {
+                    searchList.push(element);
+                }
+            });
+            console.log(searchList);
+            // send this to render the list.
+            renderItems(searchList);
+            
+            event.preventDefault();
+        }
+
 
     }
 
