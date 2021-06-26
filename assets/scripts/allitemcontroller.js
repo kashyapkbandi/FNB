@@ -212,13 +212,27 @@ document.addEventListener('click', (event) => {
             }else{
                 // orderedList is not empty it has atleast one item
                 // Now check if the item on which Remove button is being pressed, is available in the orderedList or not.
-                orderedList.forEach(element=>{
-                    if(event.target.id.substring(24) == element.item_id)
+
+                // we are not using forEach so that we can avoid removing multiple same items
+                /*
+                for example, If I have Item a 1 time and Item b 3 times and Item c once
+                when I click remove on Item b, I remove 2 Item b because, after every click, the for loop runs for whole list and checks for b
+                so it finds it 2 times and removes it twice. 
+                so we need to add break. It seems Break doesnt work with forEach as I see illegal Break statement error. 
+                replaced this with normal For loop so that the break can be added after removal of an Item so that we are removing one Item per Remove click
+                */
+                for(var i=0;i<orderedList.length;i++)
+                {
+                    if(event.target.id.substring(24) == orderedList[i].item_id)
                     {
-                        orderedList.splice(orderedList.indexOf(element.item_id),1);
-                        console.log(orderedList);
+                        // get the index of the item and remove it
+                        orderedList.splice(orderedList.indexOf(orderedList[i].item_id),1);
+                        break;
                     }
-                });
+                }
+
+
+
             }
         }
 
