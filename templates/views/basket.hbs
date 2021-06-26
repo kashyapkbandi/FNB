@@ -11,20 +11,21 @@
         integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM"
         crossorigin="anonymous"></script>
     <link rel="stylesheet" href="/styles/home.css">
-    <title>All Items</title>
+    <title>Basket</title>
 </head>
 
-<body style="overflow-y: auto;" >
-
+<body>
     <nav class="navbar navbar-light bg-light navcustom" style="border-radius: 5px;">
         <div class="container-fluid">
             <a class="navbar-brand" style="font-weight: bolder;">FNB</a>
             <form class="d-flex">
                 {{!-- adding the cart icon --}}
-                <button type="button" class="btn btn-primary position-relative" style="margin-right: 20px;" id="basketbutton">
+                <button type="button" class="btn btn-primary position-relative" style="margin-right: 20px;"
+                    id="basketbutton">
                     Basket
-                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger" id="basketnotificationitem">
-                        
+                    <span class="position-absolute top-0 start-100 translate-middle badge rounded-pill bg-danger"
+                        id="basketnotificationitem">
+
                         <span class="visually-hidden">Order Summary</span>
                     </span>
                 </button>
@@ -33,50 +34,40 @@
 
     </nav>
 
-    {{!-- main content --}}
-
-  
-    <div class="jumbotron jumbotron-fluid">
-        <main>
-            <section class="py-5 text-center container">
-                <div class="row py-lg-5">
-                    <div class="col-lg-6 col-md-8 mx-auto">
-                        <h1 class="fw-light">Sort and Search.</h1>
-
-                        <div class="container">
-                            <div class="row justify-content-md-center">
-                                <div class="col-md-auto">
-                                    <div class="form-check form-switch">
-                                        <input class="form-check-input" type="checkbox" id="isVegchecktoggle" >
-                                        Veg Only
-                                    </div>
-                                </div>
-                                <div class="col">
-                                    <form class="form-inline">
-                                        <input class="form-control mr-sm-2" type="search" placeholder="Search"
-                                            aria-label="Search" id="itemsearchbox">
-                                        <button class="btn btn-outline-success my-2 my-sm-0"
-                                            type="submit" id="FilterFoodBySearch">Search</button>
-                                    </form>
-                                </div>
-                            </div>
-
-                        </div>
-                    </div>
-                </div>
-            </section>
-  <div style="height: 300px;overflow-y:auto;">
-            <div class="album py-5 bg-transparent">
-                <div class="container" id="listcardscontainer">
-                    <div class="row row-cols-1 row-cols-sm-2 row-cols-md-3 g-3" id="listcardscontainer-internal">
-
-{{!-- dynamic cards --}}
-                    </div>
-                </div>
+    <div id="basketHoverwrapper" style="margin:auto;margin-top:2%;width:80%;height:80%;">
+        <div class="card mb-4 rounded-3 shadow-sm">
+            <div class="card-header py-3">
+                <h4 class="my-0 fw-normal">Your Order Summary.</h4>
             </div>
-        </main>
+            <div class="card-body">
+
+
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th scope="col">#</th>
+                            <th scope="col">Item Title</th>
+                            <th scope="col">Count</th>
+                            <th scope="col">Total</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {{!-- start dynamic --}}
+                        <tr>
+                            <th scope="row">1</th>
+                            <td>Item 1 </td>
+                            <td>5</td>
+                            <td>600</td>
+                        </tr>
+                           {{!-- end dynamic --}}
+                    </tbody>
+                </table>
+                <h1 class="card-title pricing-card-title"><small class="text-muted fw-light"> Grand Total</small> ₹0
+                </h1>
+                <button type="button" class="w-100 btn btn-lg btn-outline-primary">Sign up for free</button>
+            </div>
+        </div>
     </div>
-</div>
 
 
 
@@ -85,7 +76,7 @@
     <footer class="bg-white">
         <div class="container py-3">
             <div class="row py-3">
-                <div class="col-lg-4 col-md-6 mb-4 mb-lg-0"><img src="img/logo.png" alt="" width="180" class="mb-3">
+                <div class="col-lg-4 col-md-6 mb-4 mb-lg-0"><img src="#" alt="" width="180" class="mb-3">
                     <p class="font-italic text-muted">Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do
                         eiusmod tempor incididunt.</p>
                     <ul class="list-inline mt-4">
@@ -137,10 +128,7 @@
         </div>
     </footer>
 
-
-
-    <script src="/scripts/allitemcontroller.js"></script>
-
+    <script src="/scripts/basketcontroller.js"></script>
 </body>
 
 </html>

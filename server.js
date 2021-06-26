@@ -55,6 +55,9 @@ app.get('/AllItems', (req, res) => {
 });
 
 
+app.get('/basketsummary' ,(req,res)=>{
+    res.render('basket');
+});
 
 app.set('view engine', 'hbs');
 

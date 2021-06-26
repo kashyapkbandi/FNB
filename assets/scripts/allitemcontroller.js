@@ -58,7 +58,12 @@ window.addEventListener('load', (event) => {
 
     }
 
+    // get items if customer is navigating back to this page from basket page
 
+ if (localStorage.getItem("orderedItemsInBasket") != null || localStorage.getItem("orderedItemsInBasket") != undefined) {
+    console.log(localStorage.getItem("orderedItemsInBasket").split(","));
+    updateBasketNotification(localStorage.getItem("orderedItemsInBasket").length);   
+            }
 });
 
 
@@ -217,6 +222,8 @@ document.addEventListener('click', (event) => {
                 }
             );
             console.log(orderedList);
+            // update the basket notification count
+            updateBasketNotification(orderedList.length);
         }
         // if the user has pressed Remove button
         else if(event.target.id.startsWith("REM_")){
@@ -246,7 +253,8 @@ document.addEventListener('click', (event) => {
                     }
                 }
 
-
+                // update the basket notification count
+            updateBasketNotification(orderedList.length);
 
             }
         }
@@ -266,9 +274,37 @@ document.addEventListener('click', (event) => {
             event.preventDefault();
         }
 
+        // if thats a basket button
+        else if(event.target.id == "basketbutton"){
+
+            // store the ordered list in session storage of browser.
+            if (localStorage.getItem("orderedItemsInBasket") == null || localStorage.getItem("orderedItemsInBasket") == undefined) {
+
+                localStorage.setItem("orderedItemsInBasket",JSON.stringify(orderedList));
+                
+            }
+            else{
+                // if customer wants to come back and add more items. 
+                // first remove all items since the load of page would have already got the items added to session.
+                localStorage.removeItem("orderedItemsInBasket");
+
+                // reset them with current basket items
+                localStorage.setItem("orderedItemsInBasket",orderedList);
+            }
+            // and then redirect so that the basket summary page picks it from session.
+          location.href='/basketsummary';
+            
+            
+        }
 
     }
 
 
 
 });
+
+
+function updateBasketNotification(totalItemcount) {
+    document.getElementById("basketnotificationitem").innerText = totalItemcount;
+    
+}
