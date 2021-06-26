@@ -1,7 +1,7 @@
 
 var allitemListRecords = [];
 
-var orderedList=[];
+var orderedList = [];
 
 // EXAMPLE RECORD FORMAT
 // Cuisine__c: "USA"
@@ -139,8 +139,8 @@ function createCard(element) {
 
     var smalltag2 = document.createElement("small");
     smalltag2.className = "text-muted";
-    smalltag2.setAttribute('id','PRICE_'+element.Id);
-    smalltag2.innerText = "Price - "+element.Price__c;
+    smalltag2.setAttribute('id', 'PRICE_' + element.Id);
+    smalltag2.innerText = "Price - " + element.Price__c;
     dflex_div.appendChild(smalltag1);
     dflex_div.appendChild(smalltag2);
 
@@ -151,13 +151,13 @@ function createCard(element) {
     btn1.classList.add('btn', 'btn-sm', 'btn-outline-secondary');
     btn1.setAttribute("type", "button");
     btn1.innerText = "Add";
-    btn1.setAttribute('id','ADD_'+element.Id+'_NAME_'+element.Title__c);
+    btn1.setAttribute('id', 'ADD_' + element.Id + '_NAME_' + element.Title__c);
 
     var btn2 = document.createElement("button");
     btn2.classList.add('btn', 'btn-sm', 'btn-outline-secondary');
     btn2.setAttribute("type", "button");
     btn2.innerText = "remove";
-    btn2.setAttribute('id','REM_'+element.Id+'_NAME_'+element.Title__c);
+    btn2.setAttribute('id', 'REM_' + element.Id + '_NAME_' + element.Title__c);
 
     btngrp_div.appendChild(btn1);
     btngrp_div.appendChild(btn2);
@@ -187,24 +187,42 @@ function renderItems(records) {
 
 
 // adding click listener for the add button for each item
-document.addEventListener('click',(event)=>{
+document.addEventListener('click', (event) => {
 
     // if user clicked a button
     if (event.target.tagName == "BUTTON") {
         // AND that button has ID starting with ADD_ or REM_ so that we are dealing with only add or remove buttons
-        if(event.target.id.startsWith("ADD_")){
+        if (event.target.id.startsWith("ADD_")) {
             // then we are adding items to the list.
             orderedList.push(
                 {
-                    "item_id":event.target.id.substring(24),
+                    "item_id": event.target.id.substring(24),
                     // convert the text to number
-                    "item_price":parseInt(event.target.parentNode.parentNode.childNodes[1].innerText.substring(8))
-
-        });
+                    "item_price": parseInt(event.target.parentNode.parentNode.childNodes[1].innerText.substring(8))
+                }
+            );
             console.log(orderedList);
         }
-    
-}
+        // if the user has pressed Remove button
+        else if(event.target.id.startsWith("REM_")){
+            // removal logic
+            // first check if orderedList is empty (if empty no checking needed)
+            if(orderedList.length==0){
+                alert("Please add any item to remove it");
+            }else{
+                // orderedList is not empty it has atleast one item
+                // Now check if the item on which Remove button is being pressed, is available in the orderedList or not.
+                orderedList.forEach(element=>{
+                    if(event.target.id.substring(24) == element.item_id)
+                    {
+                        orderedList.splice(orderedList.indexOf(element.item_id),1);
+                        console.log(orderedList);
+                    }
+                });
+            }
+        }
+
+    }
 
 
 
