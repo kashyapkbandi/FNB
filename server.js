@@ -24,7 +24,7 @@ app.use(function (req, res, next) {
     next();
 });
 
-console.log(viewPath);
+// console.log(viewPath);
 // tell express to use templates instead of views. 
 
 app.set('views', viewPath);
@@ -61,4 +61,4 @@ app.set('view engine', 'hbs');
 
 
 
-app.listen(port);
+app.listen(port,()=>{console.log("server started on port 3000.....");});
