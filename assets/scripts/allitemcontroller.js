@@ -61,8 +61,8 @@ window.addEventListener('load', (event) => {
     // get items if customer is navigating back to this page from basket page
 
  if (localStorage.getItem("orderedItemsInBasket") != null || localStorage.getItem("orderedItemsInBasket") != undefined) {
-    console.log(localStorage.getItem("orderedItemsInBasket").split(","));
-    updateBasketNotification(localStorage.getItem("orderedItemsInBasket").length);   
+    console.log(localStorage.getItem("orderedItemsInBasket").split("},").length);
+    updateBasketNotification(localStorage.getItem("orderedItemsInBasket").split("},").length);   
             }
 });
 
@@ -117,6 +117,14 @@ document.getElementById("isVegchecktoggle").addEventListener("click", (event) =>
 
 })
 
+
+
+// clicklistener for Home link
+document.getElementById("homeLink").addEventListener("click",(event)=>{
+    // clear the storage for ordered items 
+    localStorage.removeItem("orderedItemsInBasket");
+    location.href='/';
+});
 
 // method which is responsible to dynamically prepare the card. 
 function createCard(element) {
@@ -245,6 +253,7 @@ document.addEventListener('click', (event) => {
                 */
                 for(var i=0;i<orderedList.length;i++)
                 {
+                    console.log(event.target.id.substring(24)+'---'+orderedList[i].item_id);
                     if(event.target.id.substring(24) == orderedList[i].item_id)
                     {
                         // get the index of the item and remove it
@@ -253,6 +262,7 @@ document.addEventListener('click', (event) => {
                     }
                 }
 
+                console.log(orderedList);
                 // update the basket notification count
             updateBasketNotification(orderedList.length);
 
@@ -286,10 +296,12 @@ document.addEventListener('click', (event) => {
             else{
                 // if customer wants to come back and add more items. 
                 // first remove all items since the load of page would have already got the items added to session.
+                console.log("Session storage cleared.");
                 localStorage.removeItem("orderedItemsInBasket");
 
                 // reset them with current basket items
-                localStorage.setItem("orderedItemsInBasket",orderedList);
+                localStorage.setItem("orderedItemsInBasket",JSON.stringify(orderedList));
+                console.log("Session storage added. "+localStorage.getItem("orderedItemsInBasket"));
             }
             // and then redirect so that the basket summary page picks it from session.
           location.href='/basketsummary';
